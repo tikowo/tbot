@@ -1,6 +1,7 @@
 module.exports = function makeTelegramController({ userService }) {
     return Object.freeze({
-        index
+        index,
+        notifyAllUsers
     })
 
     async function index(msg) {
@@ -15,6 +16,13 @@ module.exports = function makeTelegramController({ userService }) {
             action: JSON.stringify(msg)
         }
         const userLog = await userService.logUserAction(userAction);
-        return user.username;
+        return 'ok';
+    }
+
+    async function notifyAllUsers(bot) {
+        const chatIds = await userService.getAllChatIds();
+        chatIds.forEach(id => {
+            bot.sendMessage(id.chat_id, 'hi');
+        });
     }
 }

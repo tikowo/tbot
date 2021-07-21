@@ -16,6 +16,7 @@
     "knex": "^0.95.7",
     "mongodb": "^3.6.9",
     "mysql": "^2.18.1",
+    "node-schedule": "^2.0.0",
     "node-telegram-bot-api": "^0.53.0"
   },
   "devDependencies": {

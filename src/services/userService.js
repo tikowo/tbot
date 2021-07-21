@@ -1,9 +1,19 @@
 module.exports = function makeUserService({ userDb }) {
     return Object.freeze({
         getOrCreateUserByUsername,
-        logUserAction
+        logUserAction,
+        getAllUsers,
+        getAllChatIds
     });
 
+    async function getAllUsers() {
+        return await userDb.all();
+    }
+
+    async function getAllChatIds() {
+        return await userDb.allChatIds();
+    }
+    
     async function getOrCreateUserByUsername(userInfo) {
         let user;
         user = await userDb.findByUsername(userInfo.username);

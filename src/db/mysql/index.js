@@ -5,7 +5,12 @@ const knex = require('knex')({
         user: 'root',
         password: 'password',
         database: 'tbot'
-    }
+    },
+
+    pool: {
+        min: 2,
+        max: 10
+    },
 });
 
 const makeRecordDb = require('./recordDb');

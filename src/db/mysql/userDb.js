@@ -3,6 +3,8 @@ module.exports = function makeUserDb({ mysqlConnection }) {
         insert,
         findById,
         findByUsername,
+        all,
+        allChatIds,
         insertUserAction
     })
     
@@ -18,6 +20,14 @@ module.exports = function makeUserDb({ mysqlConnection }) {
             throw new Error('id is required');
         }
         return await mysqlConnection('users').where('id', id).first();
+    }
+
+    async function all() {
+        return await mysqlConnection('users');
+    }
+
+    async function allChatIds() {
+        return await mysqlConnection('users').select('chat_id');
     }
 
     async function findByUsername(username) {
